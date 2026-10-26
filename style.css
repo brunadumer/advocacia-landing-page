@@ -418,11 +418,13 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 0;
 }
 
 .hero__image-circle {
     width: 400px;
-    height: 400px;
+    max-width: 100%;
+    aspect-ratio: 1;
     border-radius: 50%;
     overflow: hidden;
     border: 5px solid var(--secondary-color);
@@ -580,7 +582,7 @@ img {
 
 .servicos__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-xl);
 }
 
@@ -1128,7 +1130,7 @@ img {
 /* ============================================ */
 .scroll-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 100px;
     right: 30px;
     width: 50px;
     height: 50px;
@@ -1153,6 +1155,46 @@ img {
 .scroll-top:hover {
     background-color: var(--secondary-dark);
     transform: translateY(-5px);
+}
+
+/* ============================================ */
+/* BOTÃO FLUTUANTE WHATSAPP */
+/* ============================================ */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    background-color: #25d366;
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.08);
+}
+
+.contato__detail-content a,
+.footer__contact a {
+    color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+    }
 }
 
 /* ============================================ */
@@ -1327,7 +1369,7 @@ img {
 
     /* Botão scroll to top */
     .scroll-top {
-        bottom: 20px;
+        bottom: 85px;
         right: 20px;
         width: 45px;
         height: 45px;

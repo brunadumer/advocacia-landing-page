@@ -1,6 +1,6 @@
 // ============================================
 // LANDING PAGE - ESCRITÓRIO DE ADVOCACIA
-// Oliveira & Associados Advogados
+// Ricardo S. Gonçalves - Advogado | Curitiba - PR
 // ============================================
 
 // ============================================
@@ -8,13 +8,10 @@
 // ============================================
 const CONFIG = {
     // EDITÁVEL: Número do WhatsApp (apenas números, com DDI)
-    whatsappNumber: '5511987654321',
+    whatsappNumber: '5541999149116',
 
     // EDITÁVEL: Mensagem padrão do WhatsApp
-    whatsappMessage: 'Olá! Gostaria de agendar uma consulta jurídica.',
-
-    // EDITÁVEL: E-mail para onde enviar o formulário (se integrado com backend)
-    contactEmail: 'contato@oliveiraadvogados.com.br',
+    whatsappMessage: 'Olá, Dr. Ricardo! Gostaria de agendar uma consulta.',
 
     // EDITÁVEL: Tempo de animação ao scroll (em milissegundos)
     scrollAnimationDuration: 600,
@@ -200,7 +197,7 @@ document.addEventListener('DOMContentLoaded', animateOnScroll);
 // ============================================
 // COUNTER ANIMADO (NÚMEROS NO HERO)
 // ============================================
-function animateCounter(element, target, duration = 2000) {
+function animateCounter(element, target, suffix = '', duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16); // 60 FPS
 
@@ -208,10 +205,10 @@ function animateCounter(element, target, duration = 2000) {
         start += increment;
 
         if (start >= target) {
-            element.textContent = target + '+';
+            element.textContent = target + suffix;
             clearInterval(timer);
         } else {
-            element.textContent = Math.floor(start) + '+';
+            element.textContent = Math.floor(start) + suffix;
         }
     }, 16);
 }
@@ -225,15 +222,14 @@ const statsObserver = new IntersectionObserver((entries) => {
             numbers.forEach(number => {
                 const text = number.textContent;
                 const value = parseInt(text.replace(/\D/g, ''));
-                const hasPercent = text.includes('%');
 
-                animateCounter(number, value, 2000);
+                // Textos sem número (ex: "Online") ficam como estão
+                if (isNaN(value)) return;
 
-                if (hasPercent) {
-                    setTimeout(() => {
-                        number.textContent = value + '%';
-                    }, 2000);
-                }
+                // Mantém o sufixo original do número (ex: "+", "%")
+                const suffix = text.trim().replace(/^\d+/, '');
+
+                animateCounter(number, value, suffix, 2000);
             });
 
             statsObserver.unobserve(entry.target);
@@ -288,7 +284,14 @@ function trackEvent(category, action, label) {
     */
 }
 
+// Links do WhatsApp gerados a partir do CONFIG
+const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(CONFIG.whatsappMessage)}`;
+document.querySelectorAll('[data-whatsapp]').forEach(link => {
+    link.href = whatsappUrl;
+});
+
 // Rastrear cliques no WhatsApp
+const whatsappButton = document.getElementById('whatsapp-button');
 if (whatsappButton) {
     whatsappButton.addEventListener('click', () => {
         trackEvent('Contato', 'Clique', 'WhatsApp Flutuante');
@@ -332,8 +335,8 @@ window.addEventListener('scroll', debouncedActiveLink);
 // ============================================
 // EASTER EGG - CONSOLE MESSAGE
 // ============================================
-console.log('%c Oliveira & Associados Advogados ', 'background: #1a3a52; color: #d4af37; font-size: 20px; padding: 10px;');
-console.log('%c Desenvolvido com dedicação | 2024 ', 'background: #d4af37; color: #1a3a52; font-size: 12px; padding: 5px;');
+console.log('%c Ricardo S. Gonçalves - Advogado ', 'background: #1a3a52; color: #d4af37; font-size: 20px; padding: 10px;');
+console.log('%c Desenvolvido com dedicação | 2026 ', 'background: #d4af37; color: #1a3a52; font-size: 12px; padding: 5px;');
 
 // ============================================
 // INICIALIZAÇÃO FINAL
