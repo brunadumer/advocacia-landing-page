@@ -1,6 +1,6 @@
 // ============================================
 // LANDING PAGE - ESCRITÓRIO DE ADVOCACIA
-// Ricardo S. Gonçalves - Advogado | Curitiba - PR
+// Oliveira & Associados Advogados
 // ============================================
 
 // ============================================
@@ -8,10 +8,13 @@
 // ============================================
 const CONFIG = {
     // EDITÁVEL: Número do WhatsApp (apenas números, com DDI)
-    whatsappNumber: '5541999149116',
+    whatsappNumber: '5511987654321',
 
     // EDITÁVEL: Mensagem padrão do WhatsApp
-    whatsappMessage: 'Olá, Dr. Ricardo! Gostaria de agendar uma consulta.',
+    whatsappMessage: 'Olá! Gostaria de agendar uma consulta jurídica.',
+
+    // EDITÁVEL: E-mail para onde enviar o formulário (se integrado com backend)
+    contactEmail: 'contato@oliveiraadvogados.com.br',
 
     // EDITÁVEL: Tempo de animação ao scroll (em milissegundos)
     scrollAnimationDuration: 600,
@@ -284,12 +287,6 @@ function trackEvent(category, action, label) {
     */
 }
 
-// Links do WhatsApp gerados a partir do CONFIG
-const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(CONFIG.whatsappMessage)}`;
-document.querySelectorAll('[data-whatsapp]').forEach(link => {
-    link.href = whatsappUrl;
-});
-
 // Rastrear cliques no WhatsApp
 const whatsappButton = document.getElementById('whatsapp-button');
 if (whatsappButton) {
@@ -335,8 +332,8 @@ window.addEventListener('scroll', debouncedActiveLink);
 // ============================================
 // EASTER EGG - CONSOLE MESSAGE
 // ============================================
-console.log('%c Ricardo S. Gonçalves - Advogado ', 'background: #1a3a52; color: #d4af37; font-size: 20px; padding: 10px;');
-console.log('%c Desenvolvido com dedicação | 2026 ', 'background: #d4af37; color: #1a3a52; font-size: 12px; padding: 5px;');
+console.log('%c Oliveira & Associados Advogados ', 'background: #1a3a52; color: #d4af37; font-size: 20px; padding: 10px;');
+console.log('%c Desenvolvido com dedicação | 2024 ', 'background: #d4af37; color: #1a3a52; font-size: 12px; padding: 5px;');
 
 // ============================================
 // INICIALIZAÇÃO FINAL
